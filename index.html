@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Munich vs Bezos: One Analogy That Failed, One That Built an Empire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Token system ──────────────────────────────────────────── */
+    :root {
+      --ink:        #1a1814;
+      --ink-muted:  #6b6560;
+      --paper:      #f9f7f4;
+      --rule:       #dedad5;
+      --red:        #c0392b;       /* Munich / danger signal */
+      --blue:       #1a3a5c;       /* Bezos / strategic depth */
+      --accent-bar: 3px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 18px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1rem;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Header / hero ─────────────────────────────────────────── */
+    header {
+      border-bottom: 1px solid var(--rule);
+      padding: 4rem 1.5rem 3rem;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 2px;
+      background: var(--ink-muted);
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3.1rem);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Signature element: the split-word title treatment */
+    h1 .word-munich { color: var(--red); }
+    h1 .word-bezos  { color: var(--blue); }
+
+    .deck {
+      font-size: 1.1rem;
+      color: var(--ink-muted);
+      line-height: 1.6;
+      font-style: italic;
+      max-width: 620px;
+    }
+
+    /* ── Two-column verdict bar (signature element) ─────────────── */
+    .verdict {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      overflow: hidden;
+      margin: 2.5rem 0 0;
+    }
+
+    .verdict-side {
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .verdict-side.red  { border-top: var(--accent-bar) solid var(--red);  background: #fff9f9; }
+    .verdict-side.blue { border-top: var(--accent-bar) solid var(--blue); background: #f6f9fc; }
+
+    .verdict-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .verdict-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+    }
+    .verdict-side.red  .verdict-name { color: var(--red); }
+    .verdict-side.blue .verdict-name { color: var(--blue); }
+
+    .verdict-outcome {
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+      font-style: italic;
+    }
+
+    /* ── Article body ──────────────────────────────────────────── */
+    main {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    /* pull-quote that bisects sections */
+    .pull-quote {
+      border-left: 3px solid var(--rule);
+      padding: 0.25rem 0 0.25rem 1.5rem;
+      margin: 2.5rem 0;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      line-height: 1.45;
+      color: var(--ink-muted);
+    }
+
+    section { margin-bottom: 3rem; }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    h2.red-head  { color: var(--red); }
+    h2.blue-head { color: var(--blue); }
+
+    p { margin-bottom: 1.25rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── Three-tests box ───────────────────────────────────────── */
+    .tests {
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      padding: 2rem 2rem 1.75rem;
+      margin: 2rem 0;
+      background: #fff;
+    }
+
+    .tests-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .test-item {
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: 0 1rem;
+      margin-bottom: 1.4rem;
+      align-items: start;
+    }
+
+    .test-item:last-child { margin-bottom: 0; }
+
+    .test-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      padding-top: 0.12rem;
+    }
+
+    .test-text { font-size: 0.97rem; line-height: 1.65; }
+    .test-text strong { font-weight: 600; color: var(--ink); }
+
+    /* ── Footer ────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--rule);
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    footer span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.08em;
+    }
+
+    hr.section-rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 2.5rem 0;
+    }
+
+    /* ── Responsive ────────────────────────────────────────────── */
+    @media (max-width: 560px) {
+      .verdict { grid-template-columns: 1fr; }
+      .verdict-side.red  { border-top: var(--accent-bar) solid var(--red); }
+      .verdict-side.blue { border-top: var(--accent-bar) solid var(--blue); border-top-width: 1px; border-color: var(--rule); padding-top: 1.25rem; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      main section {
+        opacity: 0;
+        transform: translateY(14px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+      main section.visible { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <p class="eyebrow">Essay · Strategy &amp; Decision-Making</p>
+    <h1>
+      <span class="word-munich">Munich</span> vs <span class="word-bezos">Bezos</span>:<br />
+      One Analogy That Failed,<br />One That Built an Empire
+    </h1>
+    <p class="deck">
+      Two leaders. Two analogies drawn from history. Only one asked the right questions before
+      the cost of being wrong became catastrophic.
+    </p>
+
+    <div class="verdict">
+      <div class="verdict-side red">
+        <span class="verdict-label">1938 · Neville Chamberlain</span>
+        <span class="verdict-name">Munich Agreement</span>
+        <span class="verdict-outcome">18 months later, Europe was at war</span>
+      </div>
+      <div class="verdict-side blue">
+        <span class="verdict-label">1994 · Jeff Bezos</span>
+        <span class="verdict-name">Amazon</span>
+        <span class="verdict-outcome">One of the most valuable companies in history</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section>
+      <p>
+        In September 1938, Neville Chamberlain flew home from Munich waving a piece of paper
+        at the British public and declared that he had secured a peace deal with Hitler. He had
+        just agreed to let Germany annex part of Czechoslovakia, and stated that Hitler's demands
+        were comparable to the grievances of any state that had been treated harshly after a lost
+        war — manageable, negotiable, and ultimately satisfiable. Eighteen months later, Europe
+        was at war.
+      </p>
+      <p>
+        In 1994, a young hedge fund analyst named Jeff Bezos sat down and mapped an online
+        bookstore onto a 19th-century mail-order catalog. Sears Roebuck had used a new
+        distribution technology — the railroad and the postal system — to sell everything from
+        dresses to toys to rural Americans who had no access to city stores. Bezos believed the
+        internet could do the same thing, at greater scale, starting with books. That analogy became
+        the founding logic of Amazon.
+      </p>
+      <p>
+        The interesting question isn't which analogy was "right" in hindsight — that's obvious now.
+        The interesting question is whether there was something significantly different about the
+        reasoning <em>before</em> anyone knew the outcome.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="red-head">Chamberlain wasn't a fool</h2>
+      <p>
+        It's easy to say that the Munich agreement was simply naivety, but that flattens what
+        actually happened. Chamberlain was pattern-matching off the most recent catastrophe his
+        generation had lived through — the First World War and the punishing peace imposed
+        afterwards. The lesson many British and French leaders drew from Versailles was that
+        humiliating a defeated power breeds resentment and eventually drives it back to war.
+      </p>
+      <p>
+        Hitler's claims on the Sudetenland were framed, and widely received, as the understandable
+        grievance of a nation still smarting from an unjust settlement — not unlike Germany's own
+        complaints after 1919. Appeasement wasn't cowardice; it was a deliberate strategy built on
+        a historical analogy that had real evidence behind it.
+      </p>
+      <div class="pull-quote">
+        The analogy imported the wrong mechanism. Versailles-era Germany was a status quo power
+        seeking redress within the existing order. Hitler was seeking power to overturn the order entirely.
+      </div>
+      <p>
+        The analogy matched on the surface — a wronged nation, a grievance, a demand — but the
+        underlying causal structure was completely different. One actor had bounded aims; the other
+        did not. Chamberlain didn't test for that difference. He didn't ask what evidence would prove
+        the analogy wrong before it was too late to matter.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="blue-head">Bezos tested the mechanism, not just the story</h2>
+      <p>
+        Bezos's analogy looks similar on the surface — old structure, new context — but it was built
+        differently. The Sears comparison wasn't a comforting story; it was a hypothesis about
+        mechanism. Sears won because a new distribution technology collapsed the cost of reaching
+        customers who previously had no access to broad selection.
+      </p>
+      <p>
+        Bezos's bet was that the internet would do the same thing, faster and more completely. That
+        hypothesis generated specific, falsifiable predictions: if the mechanism was real, the company
+        should expand aggressively beyond books into other categories, pour money into logistics and
+        distribution rather than profit, and be willing to lose money for years while it built the
+        infrastructure the analogy demanded.
+      </p>
+      <p>
+        Those predictions weren't safe — they cost Amazon huge losses and invited years of criticism
+        from investors who thought Bezos was reckless. But they were the kind of predictions you
+        can be proven wrong by, which is exactly what made the analogy worth trusting in the first
+        place.
+      </p>
+    </section>
+
+    <hr class="section-rule" />
+
+    <section>
+      <h2>What actually separates a good analogy from a bad one</h2>
+      <p>Strip away the history and three tests emerge.</p>
+
+      <div class="tests">
+        <p class="tests-title">The three tests</p>
+
+        <div class="test-item">
+          <span class="test-num">01</span>
+          <p class="test-text">
+            <strong>Does the analogy match on mechanism, not just surface?</strong><br />
+            Sears to Amazon matched on the actual causal force — distribution technology lowering
+            reach costs. Munich's analogy matched on the emotional shape of the situation
+            (a grievance, a demand) while ignoring whether the underlying actor was actually
+            bound the way the analogy assumed.
+          </p>
+        </div>
+
+        <div class="test-item">
+          <span class="test-num">02</span>
+          <p class="test-text">
+            <strong>Is the analogy falsifiable?</strong><br />
+            Bezos's analogy generated a roadmap he could be wrong about in real time — the
+            category expansion either worked or it didn't. Chamberlain's analogy generated no
+            early warning system at all. There was no moment built into the reasoning where new
+            evidence could overturn the conclusion before the cost became catastrophic.
+          </p>
+        </div>
+
+        <div class="test-item">
+          <span class="test-num">03</span>
+          <p class="test-text">
+            <strong>Who benefits from the analogy being believed?</strong><br />
+            Chamberlain's analogy gave him exactly the conclusion he was already motivated to
+            reach — that war could still be avoided. Convenient analogies, the ones that hand you
+            the answer you wanted before you started reasoning, deserve more scrutiny, not less.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>The harder version of this question</h2>
+      <p>
+        It's easy to spot bad analogies in hindsight, in other people's decisions. It's much harder
+        to spot them in your own reasoning, in real time, before the cost is known. Every meaningful
+        decision — a career bet, a pivot, a refusal to do something everyone else was doing — is
+        quietly justified by some analogy we never say out loud.
+      </p>
+      <p>
+        Some of those analogies are closer to Bezos's: testable, mechanism-matched, willing to be
+        proven wrong. Others — in fact most of them — are closer to Chamberlain's: comforting
+        stories that hand us the conclusion we already wanted.
+      </p>
+      <div class="pull-quote">
+        The discipline worth building isn't "use more analogies" or "use fewer." It's pausing on
+        the analogy doing the heavy lifting in any big decision and asking the same three questions
+        Chamberlain perhaps never asked himself.
+      </div>
+      <p>
+        What's the actual mechanism, not just the story? What evidence would prove this wrong, and
+        when would I see it? And am I drawn to this comparison because it's accurate — or because
+        it's convenient?
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>Munich vs Bezos</span>
+    <span>Strategy &amp; Decision-Making</span>
+  </footer>
+
+  <script>
+    // Scroll-reveal for sections
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll('main section').forEach(s => observer.observe(s));
+  </script>
+
+</body>
+</html>
